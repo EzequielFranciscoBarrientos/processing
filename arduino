@@ -1,0 +1,50 @@
+// C++ code
+//
+int boton1,boton2;
+
+int op=-1;
+void setup()
+{
+ 
+  pinMode(7,INPUT);
+  pinMode(6,INPUT);
+
+  pinMode(11,OUTPUT);
+  pinMode(10,OUTPUT);
+  Serial.begin(9600);
+
+}
+
+void loop()
+{
+  
+  boton1=digitalRead(7);
+  boton2=digitalRead(6);
+  
+  if(boton1==HIGH){
+    
+  	Serial.write(0);
+  }
+  
+   if (boton2==HIGH) {
+   	Serial.write(0);	
+     
+  }
+  
+ if (Serial.available() > 0) {
+    
+    op = Serial.read();
+ }
+  switch(op){
+    case 0:
+     digitalWrite(11, HIGH);
+    break;
+    case 1:
+     digitalWrite(10, HIGH);
+    break;
+    default:
+      digitalWrite(11, LOW);
+      digitalWrite(10, LOW);
+      break;
+}
+}
